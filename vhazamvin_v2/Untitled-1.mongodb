@@ -1,0 +1,19 @@
+// MongoDB Playground
+// To disable this template go to Settings | MongoDB | Use Default Template For Playground.
+// Make sure you are connected to enable completions and to be able to run a playground.
+// Use Ctrl+Space inside a snippet or a string literal to trigger completions.
+
+// Select the database to use.
+use('mongodbVSCodePlaygroundDB');
+
+// The drop() command destroys all data from a collection.
+// Make sure you run it against the correct database and collection.
+db.myCollection3211.drop();
+
+// Insert a few documents into the sales collection.
+db.myCollection3211.insertMany([
+  { '_id': 1, 'ident': 'Wiak', 'passwd': '35ed65b1eb2e87086e8d7ea0154e88d77febb8fc53af307f2a543b2d44767df0', 'admin': true},
+  { '_id': 2, 'ident': 'admin2021', 'passwd': '43dc6cec56fb974e5535b14198088a2de22e8e3933f4dd0c390651c033a55283', 'admin': true},
+  { '_id': 3, 'ident': 'user1', 'passwd': "10", 'admin': true},
+  { '_id': 4, 'ident': 'abc', 'passwd': "10", 'admin': true},
+]);
