@@ -48,6 +48,8 @@ dependencies:
   smooth_star_rating_null_safety: ^1.0.4+2
   video_player: ^2.4.8
   image_picker: ^0.8.6
+  flutter_rating_bar: ^4.0.1
+  flutter_launcher_icons: ^0.11.0
 
 dev_dependencies:
   flutter_test:
@@ -64,6 +66,10 @@ dev_dependencies:
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter packages.
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/intf.jpg"
 flutter:
 
   # The following line ensures that the Material Icons font is

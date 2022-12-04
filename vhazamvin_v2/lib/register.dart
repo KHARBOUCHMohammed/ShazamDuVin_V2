@@ -24,6 +24,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Future<ApiResponse> register() async {
     var _apiResponse = ApiResponse();
     var url = Uri.parse('http://192.168.19.47:3211/signup');
+    //var url = Uri.parse('http://127.0.0.1:49227/signup');
     var response = await http.post(url, body: {
       'ident': user,
       'passwd': password,

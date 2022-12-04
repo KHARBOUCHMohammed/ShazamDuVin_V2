@@ -62,7 +62,7 @@ class TakePictureScreenState extends State<TakePictureScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Camera'),
+        title: const Text('Scanner'),
       ),
       body: FutureBuilder<void>(
         future: _initializeControllerFuture,
@@ -101,7 +101,7 @@ class TakePictureScreenState extends State<TakePictureScreen> {
             );
           } catch (e) {
             // If an error occurs, log the error to the console.
-            print(e);
+
           }
         },
         child: const Icon(Icons.camera_alt),
@@ -139,10 +139,8 @@ class DisplayPictureScreenState extends State<DisplayPictureScreen> {
 
       for (TextLine line in block.lines) {
         _result.add(line.text ?? "");
-        //print(line.text);
-        for (TextElement element in line.elements) {
-          // Same getters as TextBlock
-        }
+
+        for (TextElement element in line.elements) {}
       }
     }
     return _result;
@@ -151,6 +149,7 @@ class DisplayPictureScreenState extends State<DisplayPictureScreen> {
   Future<ApiResponse> getWine(String request) async {
     ApiResponse _apiResponse = new ApiResponse();
     var url = Uri.parse('http://192.168.19.47:3211/api/getwine');
+    //var url = Uri.parse('http://127.0.0.1:49227/api/getwine');
     var response = await http.post(url, body: {'scan': request});
     switch (response.statusCode) {
       case 200:
@@ -176,72 +175,55 @@ class DisplayPictureScreenState extends State<DisplayPictureScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text('Display the Picture')),
+        appBar: AppBar(title: const Text('Affichage camera')),
         // The image is stored as a file on the device. Use the `Image.file`
         // constructor with the given path to display the image.
-        body: //Image.file(File(widget.imagePath)),
-            Container(
+        body: Container(
           child: FutureBuilder<ApiResponse>(
-              //future: getWine("WineName"), //pour le moment je triche ici
+              future: getWine(
+                  "grey"), //on récupère le vin "Grey" qui est dans la bases de données
               //future: tryToGetWine(widget.imagePath),
               builder:
                   (BuildContext context, AsyncSnapshot<ApiResponse> snapshot) {
-            List<Widget> children;
-            if (snapshot.hasData) {
-              if (snapshot.data!.Data != null) {
-                return WinePage(request: snapshot.data!.Data);
-              }
-              return HomePage();
-              /*
+                List<Widget> children;
+                if (snapshot.hasData) {
+                  if (snapshot.data!.Data != null) {
+                    return WinePage(request: snapshot.data!.Data);
+                  }
+                  return HomePage();
+                } else if (snapshot.hasError) {
                   children = <Widget>[
-                    Column(
-                      children: <Widget>[
-                        SizedBox(
-                          height: 400.0,
-                          child: ListView.builder(
-                            scrollDirection: Axis.vertical,
-                            itemCount: snapshot.data!.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              return Text(snapshot.data![index]);
-                            },
-                          ),
-                        ),
-                      ],
+                    const Icon(
+                      Icons.error_outline,
+                      color: Colors.red,
+                      size: 60,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 16),
+                      child: Text('Error: ${snapshot.error}'),
                     )
-                  ];*/
-            } else if (snapshot.hasError) {
-              children = <Widget>[
-                const Icon(
-                  Icons.error_outline,
-                  color: Colors.red,
-                  size: 60,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 16),
-                  child: Text('Error: ${snapshot.error}'),
-                )
-              ];
-            } else {
-              children = const <Widget>[
-                SizedBox(
-                  child: CircularProgressIndicator(),
-                  width: 60,
-                  height: 60,
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 16),
-                  child: Text('Awaiting result...'),
-                )
-              ];
-            }
-            return Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: children,
-              ),
-            );
-          }),
+                  ];
+                } else {
+                  children = const <Widget>[
+                    SizedBox(
+                      child: CircularProgressIndicator(),
+                      width: 60,
+                      height: 60,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(top: 16),
+                      child: Text('Scanning ...'),
+                    )
+                  ];
+                }
+                return Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: children,
+                  ),
+                );
+              }),
         ));
   }
 }

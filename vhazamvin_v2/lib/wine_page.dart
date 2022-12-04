@@ -60,7 +60,7 @@ class _WinePageState extends State<WinePage> {
       drawer: DrawerWine(),
       appBar: AppBarWine(),
       body: Container(
-          color: Colors.deepPurple,
+          color: Colors.red[100],
           child: Column(children: [
             Container(
               padding: const EdgeInsets.symmetric(vertical: 10),
@@ -75,7 +75,7 @@ class _WinePageState extends State<WinePage> {
               padding: const EdgeInsets.symmetric(horizontal: 15),
               constraints: const BoxConstraints.expand(),
               decoration: const BoxDecoration(
-                  color: Colors.blueGrey,
+                  color: Colors.amber,
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(35),
                       topRight: Radius.circular(35))),

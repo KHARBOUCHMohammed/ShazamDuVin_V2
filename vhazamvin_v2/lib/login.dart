@@ -26,6 +26,8 @@ class ApiResponse {
   Object? _apiError;
 
   Object get Data => _data ?? '';
+
+  get length => null;
   set Data(Object data) => _data = data;
 
   Object get ApiError => _apiError as Object;
@@ -72,6 +74,7 @@ class LoginUser {
   Future<ApiResponse> authenticateUser() async {
     ApiResponse _apiResponse = ApiResponse();
     var url = Uri.parse('http://192.168.19.47:3211/login');
+    //var url = Uri.parse('http://127.0.0.1:49227/api/login');
     var response = await http.post(url, body: {
       'ident': id,
       'passwd': password.toString(),

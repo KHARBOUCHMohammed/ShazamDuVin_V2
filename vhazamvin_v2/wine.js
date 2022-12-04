@@ -36,22 +36,12 @@ mongoose.connect(mongoAccess, { useNewUrlParser: true, useUnifiedTopology: true 
 
 const cors = require('cors');
 app.use(cors());
-/*
-const wiak = new User({ident: 'wiak', passwd: 'def3265f1ee9dd63fa71eff906a4014804569589a799224ee8915e929c0fbff0', admin: true});
-const vinRandom = new Vin({nom: 'WineName', domaine : 'WineDomain', annee: 'xxxx'});
-const vinRandom2 = new Vin({nom: 'WiddneName', domaine : 'WinessDomain', annee: 'xxsxx'});
-*/
-//console.log(vinRandom);
-/*
-vinRandom.commentaires.push({ident:'wiak', commentaire: 'ceci est une comm!', note: 1});
-for (let index = 0; index < 10; index++) {
-	vinRandom.commentaires.push({ident:'wiffak', commentaire: 'ceci estddddd une comm!', note: 4});
-	
-}
-wiak.save().then(() => console.log("ajout de l'user"));
-vinRandom2.save();
-vinRandom.save().then(() => console.log("ajout du vin"));
-*/
+
+
+//const vinRandom = new Vin({ nom: 'Canneberges', domaine: 'WineDomain', annee: '2012' });
+//const vinRandom2 = new Vin({ nom: 'WineName', domaine: 'WinessDomain', annee: '2013' });
+
+
 
 
 app.listen(3211, function () {

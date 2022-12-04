@@ -24,6 +24,7 @@ class _AddWineScreenState extends State<AddWineScreen> {
   Future<ApiResponse> addWine() async {
     var _apiResponse = ApiResponse();
     var url = Uri.parse('http://192.168.19.47:3211/api/addwine');
+    //var url = Uri.parse('http://127.0.0.1:49227/api/addwine');
     var token = Service().token;
     var response = await http.post(url, body: {
       'wineName': wineName,

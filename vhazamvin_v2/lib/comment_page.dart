@@ -6,6 +6,7 @@ import 'package:vhazamvin_v2/custom_widgets.dart';
 import 'package:vhazamvin_v2/login.dart';
 import 'package:vhazamvin_v2/service.dart';
 import 'package:smooth_star_rating_null_safety/smooth_star_rating_null_safety.dart';
+
 import 'package:http/http.dart' as http;
 
 import 'wine_page.dart';
@@ -26,6 +27,7 @@ class _CommentPageState extends State<CommentPage> {
   Future<ApiResponse> sendComm() async {
     ApiResponse _apiResponse = ApiResponse();
     var url = Uri.parse('http://192.168.19.47:3211/api/sendcomm');
+    //var url = Uri.parse('http://127.0.0.1:49227/api/sendcomm');
 
     final Map<String, dynamic> bodyData = {
       'id': widget.wine.id,
@@ -65,8 +67,8 @@ class _CommentPageState extends State<CommentPage> {
                         comment: newValue ?? "",
                         note: rate);
                   },
-                  decoration:
-                      const InputDecoration(hintText: "Votre commentaire"),
+                  decoration: const InputDecoration(
+                      hintText: "Merci de saisir votre commnetaire "),
                   validator: (String? value) {
                     if (value == null || value.isEmpty) {
                       return ('Vous ne pouvez poster un commentaire vide.');
@@ -82,9 +84,9 @@ class _CommentPageState extends State<CommentPage> {
 
                   /********** */
 
-                  /*onRated: (v) {
+                  onRatingChanged: (v) {
                     rate = v.round();
-                  },*/
+                  },
 
                   /********* */
                 ),

@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/semantics.dart';
 import 'package:vhazamvin_v2/login.dart';
 import 'package:vhazamvin_v2/service.dart';
 import 'package:smooth_star_rating_null_safety/smooth_star_rating_null_safety.dart';
@@ -45,7 +46,7 @@ class CommentsList extends StatelessWidget {
                   child: Container(
                       padding: EdgeInsets.only(left: 5, right: 5),
                       decoration: BoxDecoration(
-                        color: Colors.red,
+                        color: Colors.white,
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: SingleComment(
@@ -69,6 +70,7 @@ class SingleComment extends StatelessWidget {
   Future<ApiResponse> deleteComm(String id) async {
     ApiResponse _apiResponse = ApiResponse();
     var url = Uri.parse('http://192.168.19.47:3211/api/deletecomm');
+    //var url = Uri.parse('http://127.0.0.1:49227/api/deletecomm');
     var token = Service().token;
     var response =
         await http.post(url, body: {'jwt': token, 'id': id, 'idWine': idWine});
@@ -142,7 +144,11 @@ class SingleComment extends StatelessWidget {
 
 class _SingleComment extends StatelessWidget {
   CommentModel comment;
+
   _SingleComment({Key? key, required this.comment}) : super(key: key);
+
+//static const SemanticsFlag isReadOnly = SemanticsFlag._(_kIsReadOnlyIndex);
+//bool get isReadOnly => _hasFlag(SemanticsFlag.isReadOnly);
 
   @override
   Widget build(BuildContext context) {
@@ -158,11 +164,9 @@ class _SingleComment extends StatelessWidget {
               Text(comment.user),
               SmoothStarRating(
                 starCount: comment.note,
-
-                /********** */
-                // isReadOnly: true,
-
-                /************* */
+                /****** */
+                //isReadOnly: true,
+                /********* */
               )
             ],
           ),
